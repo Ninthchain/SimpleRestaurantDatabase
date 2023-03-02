@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Ninthchain/goserver#readme",
   "dependencies": {
-    "mongodb": "^5.1.0"
+    "md5": "^2.3.0",
+    "mongodb": "^5.1.0",
+    "mongoose": "^7.0.0"
   }
 }

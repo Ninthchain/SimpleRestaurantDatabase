@@ -16,20 +16,30 @@ class Database
      */
     constructor(host, port)
     {
-        this.uri =  "mongodb+srv://<username>:<password>@cluster0.eyhty.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+        this.uri = `mongodb://${host}:${port}/`
     }
 
     async Connect()
     {
         log("Connecting to database..")
         try {
-            await mongoose.connect(this.uri)
-            this.is_running = true
+            await mongoose.connect(this.uri, {secureContext: true, serverApi: "1", servername: "localhost"})
+            this.is_running = true;
         } catch(err) {
             log(`Cannot connect to database ${err}`)
         }
     }
+
+    /**
+     * 
+     * @returns {boolean}
+     */
+    IsOnline() {
+        return this.is_running
+    }
 }
 
 
-module.exports = Database;
+module.exports = {
+    Database
+}

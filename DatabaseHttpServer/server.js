@@ -11,10 +11,23 @@ const options = {
   };
 
 
+  database = Database
+
+
+function SetUpGetRequests()
+{
+    app.get("/database/", (req, res) => {
+    })
+    app.get("/database/status", (req, res) => {
+        res.json({
+            online: this.database
+        })
+    })
+}
 
 class DatabaseServer
 {
-    database = Database
+    
     core = https.Server
 
     constructor() {
@@ -25,13 +38,7 @@ class DatabaseServer
         log("\t\tCreated!")
 
         log("\tSetting up routes")
-        app.get("/database/", (req, res) => {
-        })
-        app.get("/database/status", (req, res) => {
-            res.json({
-                online: true
-            })
-        })
+        SetUpGetRequests()
         log("\t\tDone!")
         log("Setted up")
     }
@@ -44,7 +51,7 @@ class DatabaseServer
     Listen(host, port)
     {
         log("Connecting to the mongoDB")
-        this.database.Connect()
+        database.Connect()
 
         log("Creating server and begining to listen")
         this.core = https.createServer(options, app).listen(30, "localhost", 0, ()=> {});

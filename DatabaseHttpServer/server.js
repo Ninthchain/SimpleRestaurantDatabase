@@ -1,8 +1,8 @@
-const { IncomingMessage } = require("http");
 const https = require("https");
-const { default: mongoose } = require("mongoose");
 const Database = require("../Database/database");
 const app = require("express")()
+const fs = require('fs')
+
 
 const options = {
     key: fs.readFileSync('test/fixtures/keys/agent2-key.pem'),
@@ -11,7 +11,7 @@ const options = {
 
 
 
-class databaseServer
+class DatabaseServer
 {
     database = Database
     core = https.Server
@@ -38,4 +38,4 @@ class databaseServer
     }
 }
 
-module.exports = databaseServer
+module.exports = DatabaseServer

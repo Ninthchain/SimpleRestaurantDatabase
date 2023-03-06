@@ -5,21 +5,29 @@ const { EventEmitter } = require('stream');
 
 class Database
 {
-    connection = mongoose.Connection
-    is_secured = Boolean
+
+    connectionString = String
+    is_running = Boolean
+
     /**
      * 
-     * @param {string} uri 
+     * @param {string} hostname 
      * @returns {Database}
      */
-    constructor(uri)
+    constructor(host, port)
     {
-        connection = mongoose.createConnection(uri)
-        
+        this.uri =  "mongodb+srv://<username>:<password>@cluster0.eyhty.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
     }
 
     async Connect()
     {
+        log("Connecting to database..")
+        try {
+            await mongoose.connect(this.uri)
+            this.is_running = true
+        } catch(err) {
+            log(`Cannot connect to database ${err}`)
+        }
     }
 }
 

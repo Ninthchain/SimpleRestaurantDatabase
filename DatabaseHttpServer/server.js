@@ -1,5 +1,6 @@
 const { IncomingMessage } = require("http");
 const https = require("https");
+const { default: mongoose } = require("mongoose");
 const Database = require("../Database/database");
 const app = require("express")()
 
@@ -10,22 +11,31 @@ const options = {
 
 
 
-
-
-class Server
+class databaseServer
 {
     database = Database
     core = https.Server
 
     constructor() {
-        this.database = new Database("")
-        app.get("/database/get", (req, res) => {
-            req.query
+        this.database = new Database("localhost", 30)
+        app.get("/database/", (req, res) => {
+        })
+        app.get("/database/status", (req, res) => {
+            res.json({
+                online: true
+            })
         })
     }
 
-    Listen()
+    /**
+     * 
+     * @param {String} host 
+     * @param {Number} port 
+     */
+    Listen(host, port)
     {
-        core = https.createServer(options, app).listen(30, "localhost", 0, ()=> {});
+        this.core = https.createServer(options, app).listen(30, "localhost", 0, ()=> {});
     }
 }
+
+module.exports = databaseServer

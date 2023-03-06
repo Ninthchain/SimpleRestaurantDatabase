@@ -1,20 +1,27 @@
-const mongodb = require('mongodb')
+const { log } = require('console');
+const mongoose = require('mongoose');
+const { EventEmitter } = require('stream');
+
 
 class Database
 {
-    client
+    connection = mongoose.Connection
+    is_secured = Boolean
     /**
      * 
-     * @param {string} url 
+     * @param {string} uri 
+     * @returns {Database}
      */
-    constructor(url)
+    constructor(uri)
     {
-        this.client = new mongodb.MongoClient(address)
+        connection = mongoose.createConnection(uri)
         
     }
 
-    function start()
+    async Connect()
     {
-
     }
 }
+
+
+module.exports = Database;

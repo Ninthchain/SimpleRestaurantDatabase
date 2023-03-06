@@ -1,9 +1,9 @@
 const { Schema } = require("mongoose");
 
-const Client = new Schema({
+const Customer = new Schema({
     name: {type: String},
     balance: {type: Number},
     isRegular: {type: Boolean}
 })
 
-module.exports = Client
+module.exports = Customer

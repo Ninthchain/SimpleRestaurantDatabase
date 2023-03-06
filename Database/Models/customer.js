@@ -1,9 +1,12 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
+const Balance = require("./Money/balance");
 
-const Customer = new Schema({
+const CustomerSchema = new Schema({
     name: {type: String},
-    balance: {type: Number},
+    balance: {type: Balance},
     isRegular: {type: Boolean}
 })
+
+const Customer = model('Customer', CustomerSchema)
 
 module.exports = Customer

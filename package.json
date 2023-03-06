@@ -4,7 +4,8 @@
   "description": "http server",
   "main": "index.js",
   "scripts": {
-    "test": "echo test"
+    "test": "echo test",
+    "dev": "nodemon ./index.js"
   },
   "repository": {
     "type": "git",
@@ -17,8 +18,12 @@
   },
   "homepage": "https://github.com/Ninthchain/goserver#readme",
   "dependencies": {
+    "express": "^4.18.2",
     "md5": "^2.3.0",
     "mongodb": "^5.1.0",
     "mongoose": "^7.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
   }
 }
